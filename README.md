@@ -33,3 +33,12 @@ The project also includes a minimal setup for an Angry Birds style game using th
 6. Press Play and drag the mouse to aim. A line shows the expected path, release to launch a bird.
 
 With only Unity's primitive objects and these two scripts you can quickly prototype a simple 3D Angry Birds style experience.
+
+## PigCounter and NextSceneButton
+
+Two additional scripts support level progression:
+
+- `PigCounter.cs` counts how many pigs remain in the scene. When all objects named `Pig` are destroyed, it spawns a UI button for proceeding to the next scene.
+- `NextSceneButton.cs` handles that button's click by loading the following scene in the build settings.
+
+Attach `PigCounter` to any manager object and assign a `Button` prefab to `nextSceneButtonPrefab`.
