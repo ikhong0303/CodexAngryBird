@@ -12,3 +12,20 @@ towards the mouse click position.
 2. Create an empty game object for the spawn position and assign it to `spawnPoint`.
 3. Attach the `BallShooter` component to any object in the scene.
 4. Play the scene and click to launch up to three balls.
+
+## BirdLauncher and DestroyOnImpact
+
+The project also includes a minimal setup for an Angry Birds style game using the new scripts:
+
+- `BirdLauncher.cs` – handles dragging and launching a bird from a slingshot position.
+- `DestroyOnImpact.cs` – destroys an object when the collision impact exceeds a threshold.
+
+### Basic scene setup
+1. Create a new empty GameObject at the slingshot position and assign it as `launchPosition` on a `BirdLauncher` component.
+2. Create a sphere prefab with a `Rigidbody` and assign it as `birdPrefab` on the `BirdLauncher`.
+3. Add a `LineRenderer` component to the same object and assign it to the `directionLine` field of `BirdLauncher` to display the predicted trajectory while dragging.
+4. Build the stage using cubes, cylinders or spheres with `Rigidbody` components for blocks and pigs.
+5. Attach `DestroyOnImpact` to any object that should break on strong collision (e.g. pigs or blocks).
+6. Press Play and drag the mouse to aim. A line shows the expected path, release to launch a bird.
+
+With only Unity's primitive objects and these two scripts you can quickly prototype a simple 3D Angry Birds style experience.
