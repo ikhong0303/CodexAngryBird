@@ -1,5 +1,8 @@
 # CodexAngryBird
-Make Angry Bird  with Codex
+https://youtu.be/thMHzO1EGAg
+Make Angry Bird Style Game  with Codex
+No Coding No GameDesign
+Only use Unity Basic Objects and Compenet and Box Image
 
 ## BallShooter Script
 
