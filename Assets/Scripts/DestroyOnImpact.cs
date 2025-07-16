@@ -22,7 +22,7 @@ public class DestroyOnImpact : MonoBehaviour
         float downSpeed = 0f;
         if (rb != null)
         {
-            downSpeed = Mathf.Abs(Vector3.Dot(rb.velocity, Vector3.down));
+            downSpeed = Mathf.Abs(Vector3.Dot(rb.linearVelocity, Vector3.down));
         }
 
         if (impactVelocity > impactThreshold || downSpeed > fallSpeedThreshold)
