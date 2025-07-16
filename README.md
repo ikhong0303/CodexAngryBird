@@ -1,5 +1,5 @@
 # CodexAngryBird
-[![Developing a 2.5D Angry Birds-style Unity game with OpenAI Codex.](https://i.ytimg.com/vi/thMHzO1EGAg/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYACmgWKAgwIABABGGUgRihhMA8=&rs=AOn4CLDMPWgC2iKSsyYKwIhNg2ghRuxLAg)](http://www.youtube.com/watch?v=thMHzO1EGAg)
+[![Developing a 2.5D Angry Birds-style Unity game with OpenAI Codex.](https://i.ytimg.com/vi/thMHzO1EGAg/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYACmgWKAgwIABABGGUgRihhMA8=&rs=AOn4CLDMPWgC2iKSsyYKwIhNg2ghRuxLAg)](https://youtu.be/n_kJyiIcc7Q)
 
 Make Angry Bird Style Game  with Codex
 No Coding No GameDesign
