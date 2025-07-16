@@ -14,6 +14,7 @@ public class BirdLauncher : MonoBehaviour
     {
         cam = Camera.main;
         SpawnBird();
+
         if (directionLine != null)
         {
             directionLine.positionCount = 0;
@@ -25,6 +26,7 @@ public class BirdLauncher : MonoBehaviour
     {
         currentBird = Instantiate(birdPrefab, launchPosition.position, Quaternion.identity);
         currentBird.isKinematic = true;
+
         if (directionLine != null)
         {
             directionLine.positionCount = 0;
@@ -61,7 +63,6 @@ public class BirdLauncher : MonoBehaviour
         {
             Vector3 dragEnd = GetMouseWorldPos();
             Vector3 force = dragStart - dragEnd;
-
             if (directionLine != null)
             {
                 directionLine.enabled = false;
