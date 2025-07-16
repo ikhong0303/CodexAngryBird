@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DestroyOnImpact : MonoBehaviour
 {
-    public float impactThreshold = 5f;
+    public float impactThreshold = 10f;
 
     private void OnCollisionEnter(Collision collision)
     {
