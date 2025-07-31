@@ -2,9 +2,19 @@ using UnityEngine;
 
 public class BirdLauncher : MonoBehaviour
 {
+    public enum BirdType { Basic, BlackHole }
+
+    [Tooltip("Type of bird to launch.")]
+    public BirdType birdType = BirdType.Basic;
+
+    [Tooltip("Prefab used for the bird that will be launched.")]
     public Rigidbody birdPrefab;
     public Transform launchPosition;
     public LineRenderer directionLine; // shows predicted direction
+
+    [Header("Black Hole Settings")]
+    public float blackHoleRadius = 5f;
+    public float blackHoleForce = 50f;
 
     private Rigidbody currentBird;
     private Vector3 dragStart;
@@ -36,6 +46,11 @@ public class BirdLauncher : MonoBehaviour
 
     void Update()
     {
+        if (birdType == BirdType.BlackHole && currentBird != null && !currentBird.isKinematic)
+        {
+            AttractObjects();
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             dragStart = GetMouseWorldPos();
@@ -84,5 +99,19 @@ public class BirdLauncher : MonoBehaviour
             return ray.GetPoint(distance);
         }
         return Vector3.zero;
+    }
+
+    void AttractObjects()
+    {
+        Collider[] colliders = Physics.OverlapSphere(currentBird.position, blackHoleRadius);
+        foreach (var col in colliders)
+        {
+            Rigidbody rb = col.attachedRigidbody;
+            if (rb != null && rb != currentBird)
+            {
+                Vector3 dir = currentBird.position - rb.position;
+                rb.AddForce(dir.normalized * blackHoleForce);
+            }
+        }
     }
 }
