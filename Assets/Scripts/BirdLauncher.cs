@@ -19,6 +19,7 @@ public class BirdLauncher : MonoBehaviour
     private Rigidbody currentBird;
     private Vector3 dragStart;
     private Camera cam;
+    private bool blackHoleActive;
 
     void Start()
     {
@@ -34,6 +35,10 @@ public class BirdLauncher : MonoBehaviour
 
     void SpawnBird()
     {
+        CancelInvoke(nameof(ActivateBlackHole));
+        CancelInvoke(nameof(DeactivateBlackHole));
+        blackHoleActive = false;
+
         currentBird = Instantiate(birdPrefab, launchPosition.position, Quaternion.identity);
         currentBird.isKinematic = true;
 
@@ -46,7 +51,7 @@ public class BirdLauncher : MonoBehaviour
 
     void Update()
     {
-        if (birdType == BirdType.BlackHole && currentBird != null && !currentBird.isKinematic)
+        if (blackHoleActive && currentBird != null && !currentBird.isKinematic)
         {
             AttractObjects();
         }
@@ -86,6 +91,11 @@ public class BirdLauncher : MonoBehaviour
             currentBird.isKinematic = false;
             currentBird.AddForce(force * 500f);
 
+            if (birdType == BirdType.BlackHole)
+            {
+                Invoke(nameof(ActivateBlackHole), 0.5f);
+            }
+
             Invoke(nameof(SpawnBird), 2f);
         }
     }
@@ -113,5 +123,16 @@ public class BirdLauncher : MonoBehaviour
                 rb.AddForce(dir.normalized * blackHoleForce);
             }
         }
+    }
+
+    void ActivateBlackHole()
+    {
+        blackHoleActive = true;
+        Invoke(nameof(DeactivateBlackHole), 1f);
+    }
+
+    void DeactivateBlackHole()
+    {
+        blackHoleActive = false;
     }
 }
