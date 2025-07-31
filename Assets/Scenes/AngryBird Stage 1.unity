@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &29047791
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -303,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &85504302
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -453,6 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &94285365
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -603,6 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &254807271
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1038,6 +1042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!135 &435878028
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1196,6 +1201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &626937191
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1346,6 +1352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &821404556
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1545,6 +1552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &838081684
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1695,6 +1703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &976761295
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1872,6 +1881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!135 &1033265160
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1995,6 +2005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &1043102063
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2172,6 +2183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!135 &1145050752
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2295,6 +2307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &1154360033
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2441,9 +2454,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e3f3382d2d463aaab7ab83c1d0f5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  birdType: 1
   birdPrefab: {fileID: 7474350620064835790, guid: 1aa4ca905d0800d4f91ecf0df524cd42, type: 3}
   launchPosition: {fileID: 1154425975}
   directionLine: {fileID: 1154425976}
+  blackHoleRadius: 5
+  blackHoleForce: 50
 --- !u!4 &1154425975
 Transform:
   m_ObjectHideFlags: 0
@@ -2708,6 +2724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &1371410027
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2858,6 +2875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &1430360269
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3008,6 +3026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &1443899743
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3237,6 +3256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &1480432768
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3597,6 +3617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &1758036524
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3798,6 +3819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &1919217093
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3948,6 +3970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &1954407065
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4098,6 +4121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &2009074044
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4248,6 +4272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!54 &2043746413
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4425,6 +4450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 10
+  fallSpeedThreshold: 8
 --- !u!135 &2101819213
 SphereCollider:
   m_ObjectHideFlags: 0

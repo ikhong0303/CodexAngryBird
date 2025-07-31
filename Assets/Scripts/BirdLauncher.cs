@@ -93,10 +93,10 @@ public class BirdLauncher : MonoBehaviour
 
             if (birdType == BirdType.BlackHole)
             {
-                Invoke(nameof(ActivateBlackHole), 0.5f);
+                Invoke(nameof(ActivateBlackHole), 2.5f);
             }
 
-            Invoke(nameof(SpawnBird), 2f);
+            Invoke(nameof(SpawnBird), 4f);
         }
     }
 
@@ -128,7 +128,7 @@ public class BirdLauncher : MonoBehaviour
     void ActivateBlackHole()
     {
         blackHoleActive = true;
-        Invoke(nameof(DeactivateBlackHole), 1f);
+        Invoke(nameof(DeactivateBlackHole), 2f);
     }
 
     void DeactivateBlackHole()
