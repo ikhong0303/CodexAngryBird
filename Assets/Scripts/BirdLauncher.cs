@@ -17,6 +17,8 @@ public class BirdLauncher : MonoBehaviour
     public float blackHoleForce = 50f;
 
     private Rigidbody currentBird;
+    private Rigidbody launchedBird;
+    private bool blackHoleActive;
     private Vector3 dragStart;
     private Camera cam;
 
@@ -46,7 +48,7 @@ public class BirdLauncher : MonoBehaviour
 
     void Update()
     {
-        if (birdType == BirdType.BlackHole && currentBird != null && !currentBird.isKinematic)
+        if (birdType == BirdType.BlackHole && blackHoleActive && launchedBird != null)
         {
             AttractObjects();
         }
@@ -83,8 +85,15 @@ public class BirdLauncher : MonoBehaviour
                 directionLine.enabled = false;
             }
 
-            currentBird.isKinematic = false;
-            currentBird.AddForce(force * 500f);
+            launchedBird = currentBird;
+            currentBird = null;
+            launchedBird.isKinematic = false;
+            launchedBird.AddForce(force * 500f);
+            blackHoleActive = false;
+            if (birdType == BirdType.BlackHole)
+            {
+                Invoke(nameof(ActivateBlackHole), 3f);
+            }
 
             Invoke(nameof(SpawnBird), 2f);
         }
@@ -103,15 +112,22 @@ public class BirdLauncher : MonoBehaviour
 
     void AttractObjects()
     {
-        Collider[] colliders = Physics.OverlapSphere(currentBird.position, blackHoleRadius);
+        if (launchedBird == null) return;
+
+        Collider[] colliders = Physics.OverlapSphere(launchedBird.position, blackHoleRadius);
         foreach (var col in colliders)
         {
             Rigidbody rb = col.attachedRigidbody;
-            if (rb != null && rb != currentBird)
+            if (rb != null && rb != launchedBird)
             {
-                Vector3 dir = currentBird.position - rb.position;
+                Vector3 dir = launchedBird.position - rb.position;
                 rb.AddForce(dir.normalized * blackHoleForce);
             }
         }
+    }
+
+    void ActivateBlackHole()
+    {
+        blackHoleActive = true;
     }
 }
