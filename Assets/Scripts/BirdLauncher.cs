@@ -1,14 +1,13 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BirdLauncher : MonoBehaviour
 {
-    public enum BirdType { Basic, BlackHole }
-
     [Tooltip("Type of bird to launch.")]
-    public BirdType birdType = BirdType.Basic;
+    public BirdType.Type selectedBird;
 
-    [Tooltip("Prefab used for the bird that will be launched.")]
-    public Rigidbody birdPrefab;
+    [Tooltip("Prefabs available for the bird that will be launched.")]
+    public List<Rigidbody> birdPrefabs;
     public Transform launchPosition;
     public LineRenderer directionLine; // shows predicted direction
 
@@ -39,7 +38,24 @@ public class BirdLauncher : MonoBehaviour
         CancelInvoke(nameof(DeactivateBlackHole));
         blackHoleActive = false;
 
-        currentBird = Instantiate(birdPrefab, launchPosition.position, Quaternion.identity);
+        Rigidbody prefab = null;
+        foreach (var b in birdPrefabs)
+        {
+            BirdType bt = b.GetComponent<BirdType>();
+            if (bt != null && bt.type == selectedBird)
+            {
+                prefab = b;
+                break;
+            }
+        }
+
+        if (prefab == null)
+        {
+            Debug.LogWarning($"No prefab found for {selectedBird}");
+            return;
+        }
+
+        currentBird = Instantiate(prefab, launchPosition.position, Quaternion.identity);
         currentBird.isKinematic = true;
 
         if (directionLine != null)
@@ -91,7 +107,7 @@ public class BirdLauncher : MonoBehaviour
             currentBird.isKinematic = false;
             currentBird.AddForce(force * 500f);
 
-            if (birdType == BirdType.BlackHole)
+            if (selectedBird == BirdType.Type.BlackHole)
             {
                 Invoke(nameof(ActivateBlackHole), 2.5f);
             }
@@ -134,5 +150,11 @@ public class BirdLauncher : MonoBehaviour
     void DeactivateBlackHole()
     {
         blackHoleActive = false;
+    }
+
+    public void ChooseBird(BirdType.Type type)
+    {
+        selectedBird = type;
+        SpawnBird();
     }
 }
