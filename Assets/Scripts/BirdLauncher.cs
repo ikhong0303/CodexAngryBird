@@ -34,6 +34,11 @@ public class BirdLauncher : MonoBehaviour
 
     void SpawnBird()
     {
+        CancelInvoke(nameof(SpawnBird));
+        if (currentBird != null)
+        {
+            Destroy(currentBird.gameObject);
+        }
         CancelInvoke(nameof(ActivateBlackHole));
         CancelInvoke(nameof(DeactivateBlackHole));
         blackHoleActive = false;
