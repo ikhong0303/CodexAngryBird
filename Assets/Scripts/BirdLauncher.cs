@@ -37,7 +37,7 @@ public class BirdLauncher : MonoBehaviour
     void SpawnBird()
     {
         CancelInvoke(nameof(SpawnBird));
-        if (currentBird != null)
+        if (currentBird != null && currentBird.isKinematic)
         {
             Destroy(currentBird.gameObject);
         }
