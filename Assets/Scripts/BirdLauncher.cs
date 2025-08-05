@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class BirdLauncher : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class BirdLauncher : MonoBehaviour
     private Vector3 dragStart;
     private Camera cam;
     private bool blackHoleActive;
+    private bool isDragging;
 
     void Start()
     {
@@ -86,7 +88,12 @@ public class BirdLauncher : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
             dragStart = GetMouseWorldPos();
+            isDragging = true;
             if (directionLine != null)
             {
                 directionLine.positionCount = 2;
@@ -96,7 +103,7 @@ public class BirdLauncher : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && isDragging)
         {
             if (directionLine != null && directionLine.enabled)
             {
@@ -107,7 +114,7 @@ public class BirdLauncher : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && isDragging)
         {
             Vector3 dragEnd = GetMouseWorldPos();
             Vector3 force = dragStart - dragEnd;
@@ -125,6 +132,7 @@ public class BirdLauncher : MonoBehaviour
             }
 
             Invoke(nameof(SpawnBird), 4f);
+            isDragging = false;
         }
     }
 
