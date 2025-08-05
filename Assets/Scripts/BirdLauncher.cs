@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 public class BirdLauncher : MonoBehaviour
 {
@@ -20,63 +19,17 @@ public class BirdLauncher : MonoBehaviour
     private Vector3 dragStart;
     private Camera cam;
     private bool blackHoleActive;
-    private Canvas buttonCanvas;
 
     void Start()
     {
         cam = Camera.main;
         SpawnBird();
 
-        CreateSelectionUI();
-
         if (directionLine != null)
         {
             directionLine.positionCount = 0;
             directionLine.enabled = false;
         }
-    }
-
-    void CreateSelectionUI()
-    {
-        if (buttonCanvas != null)
-        {
-            return;
-        }
-
-        GameObject canvasObj = new GameObject("BirdSelectionCanvas");
-        buttonCanvas = canvasObj.AddComponent<Canvas>();
-        buttonCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvasObj.AddComponent<CanvasScaler>();
-        canvasObj.AddComponent<GraphicRaycaster>();
-
-        CreateButton("Basic", BirdType.Type.Basic, new Vector2(-160f, 80f));
-        CreateButton("BlackHole", BirdType.Type.BlackHole, new Vector2(0f, 80f));
-        CreateButton("Gunner", BirdType.Type.Gunner, new Vector2(160f, 80f));
-    }
-
-    void CreateButton(string label, BirdType.Type type, Vector2 anchoredPosition)
-    {
-        GameObject buttonObj = new GameObject(label + "Button");
-        buttonObj.transform.SetParent(buttonCanvas.transform);
-        buttonObj.AddComponent<Image>();
-        Button btn = buttonObj.AddComponent<Button>();
-        RectTransform rect = buttonObj.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(160f, 30f);
-        rect.anchoredPosition = anchoredPosition;
-
-        GameObject textObj = new GameObject("Text");
-        textObj.transform.SetParent(buttonObj.transform);
-        Text txt = textObj.AddComponent<Text>();
-        txt.text = label;
-        txt.alignment = TextAnchor.MiddleCenter;
-        txt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        RectTransform textRect = textObj.GetComponent<RectTransform>();
-        textRect.anchorMin = Vector2.zero;
-        textRect.anchorMax = Vector2.one;
-        textRect.offsetMin = Vector2.zero;
-        textRect.offsetMax = Vector2.zero;
-
-        btn.onClick.AddListener(() => ChooseBird(type));
     }
 
     void SpawnBird()
@@ -198,6 +151,10 @@ public class BirdLauncher : MonoBehaviour
     {
         blackHoleActive = false;
     }
+
+    public void ChooseBasicBird() => ChooseBird(BirdType.Type.Basic);
+    public void ChooseBlackHoleBird() => ChooseBird(BirdType.Type.BlackHole);
+    public void ChooseGunnerBird() => ChooseBird(BirdType.Type.Gunner);
 
     public void ChooseBird(BirdType.Type type)
     {
