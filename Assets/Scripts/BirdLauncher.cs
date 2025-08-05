@@ -38,20 +38,17 @@ public class BirdLauncher : MonoBehaviour
         CancelInvoke(nameof(DeactivateBlackHole));
         blackHoleActive = false;
 
-        Rigidbody prefab = null;
-        foreach (var b in birdPrefabs)
+        // Find the prefab that matches the selected bird type
+        Rigidbody prefab = birdPrefabs.Find(b =>
         {
             BirdType bt = b.GetComponent<BirdType>();
-            if (bt != null && bt.type == selectedBird)
-            {
-                prefab = b;
-                break;
-            }
-        }
+            return bt != null && bt.type == selectedBird;
+        });
 
         if (prefab == null)
         {
             Debug.LogWarning($"No prefab found for {selectedBird}");
+            currentBird = null;
             return;
         }
 
@@ -72,6 +69,16 @@ public class BirdLauncher : MonoBehaviour
             AttractObjects();
         }
 
+        if (currentBird == null)
+        {
+            return;
+        }
+
+        HandleInput();
+    }
+
+    void HandleInput()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             dragStart = GetMouseWorldPos();
