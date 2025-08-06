@@ -71,6 +71,8 @@ public class BirdLauncher : MonoBehaviour
 
     void Update()
     {
+        HandleBirdSelectionInput();
+
         if (blackHoleActive && currentBird != null && !currentBird.isKinematic)
         {
             AttractObjects();
@@ -82,6 +84,26 @@ public class BirdLauncher : MonoBehaviour
         }
 
         HandleInput();
+    }
+
+    void HandleBirdSelectionInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ChooseBasicBird();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ChooseBlackHoleBird();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ChooseGunnerBird();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            ChooseGiantBird();
+        }
     }
 
     void HandleInput()
@@ -175,6 +197,7 @@ public class BirdLauncher : MonoBehaviour
     public void ChooseBasicBird() => ChooseBird(BirdType.Type.Basic);
     public void ChooseBlackHoleBird() => ChooseBird(BirdType.Type.BlackHole);
     public void ChooseGunnerBird() => ChooseBird(BirdType.Type.Gunner);
+    public void ChooseGiantBird() => ChooseBird(BirdType.Type.Giant);
 
     public void ChooseBird(BirdType.Type type)
     {
