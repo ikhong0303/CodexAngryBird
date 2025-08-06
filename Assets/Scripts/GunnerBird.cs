@@ -29,7 +29,7 @@ public class GunnerBird : MonoBehaviour
             return;
         }
 
-        GameObject shotgun = Instantiate(shotgunPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject shotgun = Instantiate(shotgunPrefab, spawnPoint.position, shotgunPrefab.transform.rotation);
         Destroy(shotgun, 2f);
     }
 }
