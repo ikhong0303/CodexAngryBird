@@ -11,6 +11,7 @@ public class GiantBird : MonoBehaviour
 
     private Rigidbody rb;
     private bool launched;
+    private bool isGrowing;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class GiantBird : MonoBehaviour
 
     private IEnumerator GrowAndPush()
     {
+        isGrowing = true;
         Vector3 startScale = transform.localScale;
         Vector3 targetScale = startScale * scaleMultiplier;
         float elapsed = 0f;
@@ -44,6 +46,7 @@ public class GiantBird : MonoBehaviour
             yield return null;
         }
         transform.localScale = targetScale;
+        isGrowing = false;
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, pushRadius);
         foreach (var col in colliders)
@@ -54,6 +57,20 @@ public class GiantBird : MonoBehaviour
                 Vector3 dir = (otherRb.position - transform.position).normalized;
                 otherRb.AddForce(dir * pushForce);
             }
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (!isGrowing)
+        {
+            return;
+        }
+
+        DestroyOnImpact target = collision.collider.GetComponentInParent<DestroyOnImpact>();
+        if (target != null && target.transform.position.y < transform.position.y)
+        {
+            Destroy(target.gameObject);
         }
     }
 }
