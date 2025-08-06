@@ -26,10 +26,10 @@ public class ShotgunPellet : MonoBehaviour
             return;
         }
 
-        DestroyOnImpact target = collision.gameObject.GetComponent<DestroyOnImpact>();
+        DestroyOnImpact target = collision.collider.GetComponentInParent<DestroyOnImpact>();
         if (target != null)
         {
-            Destroy(collision.gameObject);
+            Destroy(target.gameObject);
         }
     }
 }
