@@ -2,18 +2,34 @@ using UnityEngine;
 
 public class GunnerBird : MonoBehaviour
 {
+    [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject shotgunPrefab;
 
-    private void Start()
+    private Rigidbody rb;
+    private bool launched;
+
+    private void Awake()
     {
-        Invoke(nameof(Shoot), 2f);
+        rb = GetComponent<Rigidbody>();
     }
 
-    private void Shoot()
+    private void Update()
     {
-        if (shotgunPrefab != null)
+        if (!launched && rb != null && !rb.isKinematic)
         {
-            Instantiate(shotgunPrefab, transform.position, transform.rotation);
+            launched = true;
+            Invoke(nameof(FireShotgun), 2f);
         }
+    }
+
+    private void FireShotgun()
+    {
+        if (shotgunPrefab == null || spawnPoint == null)
+        {
+            return;
+        }
+
+        GameObject shotgun = Instantiate(shotgunPrefab, spawnPoint.position, spawnPoint.rotation);
+        Destroy(shotgun, 2f);
     }
 }
