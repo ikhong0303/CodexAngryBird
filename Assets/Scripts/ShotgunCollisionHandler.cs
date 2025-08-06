@@ -20,12 +20,12 @@ public class ShotgunCollisionHandler : MonoBehaviour
 
         ParticlePhysicsExtensions.GetCollisionEvents(GetComponent<ParticleSystem>(), other, _collisionEvents);
 
-        foreach (ParticleCollisionEvent _ in _collisionEvents)
+        foreach (ParticleCollisionEvent collisionEvent in _collisionEvents)
         {
-            DestroyOnImpact target = other.GetComponent<DestroyOnImpact>();
+            DestroyOnImpact target = collisionEvent.colliderComponent.GetComponentInParent<DestroyOnImpact>();
             if (target != null)
             {
-                Destroy(other.gameObject);
+                Destroy(target.gameObject);
             }
         }
 
