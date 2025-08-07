@@ -104,6 +104,10 @@ public class BirdLauncher : MonoBehaviour
         {
             ChooseGiantBird();
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ChooseBombBird();
+        }
     }
 
     void HandleInput()
@@ -198,6 +202,7 @@ public class BirdLauncher : MonoBehaviour
     public void ChooseBlackHoleBird() => ChooseBird(BirdType.Type.BlackHole);
     public void ChooseGunnerBird() => ChooseBird(BirdType.Type.Gunner);
     public void ChooseGiantBird() => ChooseBird(BirdType.Type.Giant);
+    public void ChooseBombBird() => ChooseBird(BirdType.Type.Bomb);
 
     public void ChooseBird(BirdType.Type type)
     {
