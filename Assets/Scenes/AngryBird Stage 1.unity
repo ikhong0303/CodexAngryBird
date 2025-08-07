@@ -1766,6 +1766,8 @@ MonoBehaviour:
   slowSpeed: 7
   fastSpeed: 13
   waitTime: 1.5
+  offset: {x: 0, y: 0, z: 0}
+  followSpeed: 5
 --- !u!1 &338142034
 GameObject:
   m_ObjectHideFlags: 0
@@ -5502,7 +5504,7 @@ MonoBehaviour:
   - {fileID: 7474350620064835790, guid: e5a1cbbf4b7045dcae7d903e68bdb693, type: 3}
   launchPosition: {fileID: 1154425975}
   directionLine: {fileID: 1154425976}
-  cameraDirector: {fileID: 0}
+  cameraDirector: {fileID: 330585548}
   blackHoleRadius: 5
   blackHoleForce: 50
 --- !u!4 &1154425975

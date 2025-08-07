@@ -22,14 +22,19 @@ public class ShotgunCollisionHandler : MonoBehaviour
 
         foreach (ParticleCollisionEvent collisionEvent in _collisionEvents)
         {
-            DestroyOnImpact target = collisionEvent.colliderComponent.GetComponentInParent<DestroyOnImpact>();
-            if (target != null)
+            var collider = collisionEvent.colliderComponent;
+
+            if (collider != null && collider is Collider || collider is Collider2D)
             {
-                Destroy(target.gameObject);
+                var target = collider.GetComponentInParent<DestroyOnImpact>();
+                if (target != null)
+                {
+                    Destroy(target.gameObject);
+                }
             }
         }
+
 
         _collisionEvents.Clear();
     }
 }
-
