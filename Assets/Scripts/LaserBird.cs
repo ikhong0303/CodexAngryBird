@@ -46,7 +46,7 @@ public class LaserBird : MonoBehaviour
         while (elapsed < beamDuration)
         {
             Vector3 start = laserSpawnPoint.position;
-            Vector3 direction = laserSpawnPoint.forward;
+            Vector3 direction = laserSpawnPoint.right;
 
             if (Physics.Raycast(start, direction, out RaycastHit hit, maxDistance))
             {
