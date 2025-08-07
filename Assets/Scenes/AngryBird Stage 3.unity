@@ -3049,6 +3049,7 @@ MonoBehaviour:
   - {fileID: 7474350620064835790, guid: 1aa4ca905d0800d4f91ecf0df524cd42, type: 3}
   - {fileID: 7474350620064835790, guid: 471f4f1d7d514395a2ad909f56558aad, type: 3}
   - {fileID: 7474350620064835790, guid: 400cd3e2819d4aa68838f6f271cbfe15, type: 3}
+  - {fileID: 7474350620064835790, guid: 5c65fa4ee01347a0b37acf8db9a86330, type: 3}
   launchPosition: {fileID: 1154425975}
   directionLine: {fileID: 1154425976}
   blackHoleRadius: 5

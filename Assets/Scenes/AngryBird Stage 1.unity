@@ -4749,12 +4749,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedBird: 0
   birdPrefabs:
-  - {fileID: 7474350620064835790, guid: 6ff92cc47f1545b4a06d420b10938ae2, type: 3}
-  - {fileID: 7474350620064835790, guid: 471f4f1d7d514395a2ad909f56558aad, type: 3}
-  - {fileID: 7474350620064835790, guid: 400cd3e2819d4aa68838f6f271cbfe15, type: 3}
-  - {fileID: 7474350620064835790, guid: d7056d0572ea3ed4ab5829df76577d26, type: 3}
-  launchPosition: {fileID: 1154425975}
-  directionLine: {fileID: 1154425976}
+    - {fileID: 7474350620064835790, guid: 6ff92cc47f1545b4a06d420b10938ae2, type: 3}
+    - {fileID: 7474350620064835790, guid: 471f4f1d7d514395a2ad909f56558aad, type: 3}
+    - {fileID: 7474350620064835790, guid: 400cd3e2819d4aa68838f6f271cbfe15, type: 3}
+    - {fileID: 7474350620064835790, guid: d7056d0572ea3ed4ab5829df76577d26, type: 3}
+    - {fileID: 7474350620064835790, guid: 5c65fa4ee01347a0b37acf8db9a86330, type: 3}
+    launchPosition: {fileID: 1154425975}
+    directionLine: {fileID: 1154425976}
   blackHoleRadius: 5
   blackHoleForce: 50
 --- !u!4 &1154425975
