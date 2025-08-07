@@ -10,6 +10,9 @@ public class CameraDirector : MonoBehaviour
     public float fastSpeed = 5f;
     public float waitTime = 1f;
 
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private float followSpeed = 5f;
+
     private BirdLauncher launcher;
     private Transform targetBird;
     private bool returning;
@@ -33,9 +36,8 @@ public class CameraDirector : MonoBehaviour
     {
         if (targetBird != null)
         {
-            Vector3 pos = transform.position;
-            pos.x = targetBird.position.x;
-            transform.position = pos;
+            Vector3 targetPos = targetBird.position + offset;
+            transform.position = Vector3.Lerp(transform.position, targetPos, followSpeed * Time.deltaTime);
         }
         else if (returning && MainCamPos != null)
         {
