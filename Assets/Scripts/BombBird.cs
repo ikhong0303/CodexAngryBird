@@ -11,14 +11,12 @@ public class BombBird : MonoBehaviour
     public Material blackMaterial;
 
     private Rigidbody rb;
-    private Renderer rend;
     private bool launched;
     private bool exploded;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rend = GetComponent<Renderer>();
     }
 
     private void Update()
@@ -64,9 +62,10 @@ public class BombBird : MonoBehaviour
             }
         }
 
-        if (rend != null && blackMaterial != null)
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null && blackMaterial != null)
         {
-            rend.material = blackMaterial;
+            renderer.material = blackMaterial;
         }
     }
 }
