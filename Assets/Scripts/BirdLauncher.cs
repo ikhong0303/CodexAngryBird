@@ -12,6 +12,9 @@ public class BirdLauncher : MonoBehaviour
     public Transform launchPosition;
     public LineRenderer directionLine; // shows predicted direction
 
+    [SerializeField]
+    private CameraDirector cameraDirector;
+
     [Header("Black Hole Settings")]
     public float blackHoleRadius = 5f;
     public float blackHoleForce = 50f;
@@ -36,6 +39,10 @@ public class BirdLauncher : MonoBehaviour
 
     void SpawnBird()
     {
+        if (cameraDirector != null)
+        {
+            cameraDirector.ReturnToMain();
+        }
         CancelInvoke(nameof(SpawnBird));
         if (currentBird != null && currentBird.isKinematic)
         {
@@ -155,6 +162,10 @@ public class BirdLauncher : MonoBehaviour
 
             currentBird.isKinematic = false;
             currentBird.AddForce(force * 500f);
+            if (cameraDirector != null)
+            {
+                cameraDirector.FollowBird(currentBird.transform);
+            }
 
             if (selectedBird == BirdType.Type.BlackHole)
             {

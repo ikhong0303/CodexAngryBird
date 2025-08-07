@@ -10,6 +10,8 @@ public class CameraDirector : MonoBehaviour
     public float waitTime = 1f;
 
     private BirdLauncher launcher;
+    private Transform targetBird;
+    private bool returning;
 
     void Start()
     {
@@ -20,6 +22,25 @@ public class CameraDirector : MonoBehaviour
         }
 
         StartCoroutine(CameraSequence());
+    }
+
+    void LateUpdate()
+    {
+        if (targetBird != null)
+        {
+            Vector3 pos = transform.position;
+            pos.x = targetBird.position.x;
+            transform.position = pos;
+        }
+        else if (returning && MainCamPos != null)
+        {
+            transform.position = Vector3.Lerp(transform.position, MainCamPos.position, fastSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, MainCamPos.position) < 0.1f)
+            {
+                transform.position = MainCamPos.position;
+                returning = false;
+            }
+        }
     }
 
     private IEnumerator CameraSequence()
@@ -67,6 +88,18 @@ public class CameraDirector : MonoBehaviour
         {
             launcher.enabled = true;
         }
+    }
+
+    public void FollowBird(Transform bird)
+    {
+        targetBird = bird;
+        returning = false;
+    }
+
+    public void ReturnToMain()
+    {
+        targetBird = null;
+        returning = true;
     }
 }
 
