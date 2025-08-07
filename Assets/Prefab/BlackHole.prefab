@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3763032688416816071}
   - component: {fileID: 7474350620064835790}
   - component: {fileID: 5900551541352076851}
+  - component: {fileID: -3470818699034632552}
   m_Layer: 0
   m_Name: BlackHole
   m_TagString: Untagged
@@ -150,3 +151,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+--- !u!114 &-3470818699034632552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7083032839374309228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2226ef78034f3a48b88d3be905d4aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackHoleRadius: 4
+  blackHoleForce: 30
+  delayBeforeActivate: 2.5
+  activeDuration: 2

@@ -36,7 +36,12 @@ public class CameraDirector : MonoBehaviour
     {
         if (targetBird != null)
         {
-            Vector3 targetPos = targetBird.position + offset;
+            // X만 새를 따라가고, Y/Z는 현재 카메라 위치 + offset 유지
+            Vector3 targetPos = new Vector3(
+                targetBird.position.x + offset.x,
+                transform.position.y,
+                transform.position.z
+            );
             transform.position = Vector3.Lerp(transform.position, targetPos, followSpeed * Time.deltaTime);
         }
         else if (returning && MainCamPos != null)
