@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class CameraDirector : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class CameraDirector : MonoBehaviour
     private BirdLauncher launcher;
     private Transform targetBird;
     private bool returning;
+    private bool isSequenceRunning;
+
+    public event Action OnSequenceComplete;
 
     void Start()
     {
@@ -21,6 +25,7 @@ public class CameraDirector : MonoBehaviour
             launcher.enabled = false;
         }
 
+        isSequenceRunning = true;
         StartCoroutine(CameraSequence());
     }
 
@@ -39,6 +44,12 @@ public class CameraDirector : MonoBehaviour
             {
                 transform.position = MainCamPos.position;
                 returning = false;
+                isSequenceRunning = false;
+                if (launcher != null)
+                {
+                    launcher.enabled = true;
+                }
+                OnSequenceComplete?.Invoke();
             }
         }
     }
@@ -84,22 +95,46 @@ public class CameraDirector : MonoBehaviour
             }
         }
 
+        isSequenceRunning = false;
         if (launcher != null)
         {
             launcher.enabled = true;
         }
+        OnSequenceComplete?.Invoke();
     }
 
-    public void FollowBird(Transform bird)
+    public void FollowBird(Transform bird, float returnDelay = 0f)
     {
         targetBird = bird;
         returning = false;
+        isSequenceRunning = true;
+        if (launcher != null)
+        {
+            launcher.enabled = false;
+        }
+        if (returnDelay > 0f)
+        {
+            StartCoroutine(ReturnAfterDelay(returnDelay));
+        }
     }
 
     public void ReturnToMain()
     {
         targetBird = null;
         returning = true;
+        isSequenceRunning = true;
+        if (launcher != null)
+        {
+            launcher.enabled = false;
+        }
     }
+
+    private IEnumerator ReturnAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ReturnToMain();
+    }
+
+    public bool IsSequenceRunning => isSequenceRunning;
 }
 

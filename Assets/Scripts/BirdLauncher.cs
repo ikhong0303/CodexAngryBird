@@ -28,7 +28,6 @@ public class BirdLauncher : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        SpawnBird();
 
         if (directionLine != null)
         {
@@ -37,12 +36,24 @@ public class BirdLauncher : MonoBehaviour
         }
     }
 
-    void SpawnBird()
+    void OnEnable()
     {
         if (cameraDirector != null)
         {
-            cameraDirector.ReturnToMain();
+            cameraDirector.OnSequenceComplete += SpawnBird;
         }
+    }
+
+    void OnDisable()
+    {
+        if (cameraDirector != null)
+        {
+            cameraDirector.OnSequenceComplete -= SpawnBird;
+        }
+    }
+
+    void SpawnBird()
+    {
         CancelInvoke(nameof(SpawnBird));
         if (currentBird != null && currentBird.isKinematic)
         {
@@ -164,7 +175,7 @@ public class BirdLauncher : MonoBehaviour
             currentBird.AddForce(force * 500f);
             if (cameraDirector != null)
             {
-                cameraDirector.FollowBird(currentBird.transform);
+                cameraDirector.FollowBird(currentBird.transform, 4f);
             }
 
             if (selectedBird == BirdType.Type.BlackHole)
@@ -172,7 +183,6 @@ public class BirdLauncher : MonoBehaviour
                 Invoke(nameof(ActivateBlackHole), 2.5f);
             }
 
-            Invoke(nameof(SpawnBird), 4f);
             isDragging = false;
         }
     }
