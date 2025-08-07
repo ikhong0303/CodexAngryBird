@@ -25,6 +25,18 @@ public class BirdLauncher : MonoBehaviour
     private bool blackHoleActive;
     private bool isDragging;
 
+    void Awake()
+    {
+        if (cameraDirector == null)
+        {
+            cameraDirector = FindObjectOfType<CameraDirector>();
+            if (cameraDirector == null)
+            {
+                Debug.LogWarning("CameraDirector not found. BirdLauncher may not function correctly.");
+            }
+        }
+    }
+
     void Start()
     {
         cam = Camera.main;
