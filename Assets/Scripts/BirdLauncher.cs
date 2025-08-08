@@ -19,6 +19,8 @@ public class BirdLauncher : MonoBehaviour
     [SerializeField]
     private CameraDirector cameraDirector;
 
+    private readonly HashSet<BirdType.Type> availableTypes = new HashSet<BirdType.Type>();
+
     private Rigidbody currentBird;
     private Vector3 dragStart;
     private Camera cam;
@@ -45,6 +47,8 @@ public class BirdLauncher : MonoBehaviour
             directionLine.positionCount = 0;
             directionLine.enabled = false;
         }
+
+        LoadStageConfig();
     }
 
     void OnEnable()
@@ -71,12 +75,36 @@ public class BirdLauncher : MonoBehaviour
 
     void HandleBirdSelectionInput()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) ChooseBasicBird();
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) ChooseBlackHoleBird();
-        else if (Input.GetKeyDown(KeyCode.Alpha3)) ChooseGunnerBird();
-        else if (Input.GetKeyDown(KeyCode.Alpha4)) ChooseGiantBird();
-        else if (Input.GetKeyDown(KeyCode.Alpha5)) ChooseBombBird();
-        else if (Input.GetKeyDown(KeyCode.Alpha6)) ChooseLaserBird();
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (IsTypeAvailable(BirdType.Type.Basic)) ChooseBasicBird();
+            else ShowUnavailable(BirdType.Type.Basic);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (IsTypeAvailable(BirdType.Type.BlackHole)) ChooseBlackHoleBird();
+            else ShowUnavailable(BirdType.Type.BlackHole);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (IsTypeAvailable(BirdType.Type.Gunner)) ChooseGunnerBird();
+            else ShowUnavailable(BirdType.Type.Gunner);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (IsTypeAvailable(BirdType.Type.Giant)) ChooseGiantBird();
+            else ShowUnavailable(BirdType.Type.Giant);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            if (IsTypeAvailable(BirdType.Type.Bomb)) ChooseBombBird();
+            else ShowUnavailable(BirdType.Type.Bomb);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            if (IsTypeAvailable(BirdType.Type.Laser)) ChooseLaserBird();
+            else ShowUnavailable(BirdType.Type.Laser);
+        }
     }
 
     void HandleInput()
@@ -178,7 +206,7 @@ public class BirdLauncher : MonoBehaviour
         return Vector3.zero;
     }
 
-    // Bird 타입 변경 함수들
+    // Bird selection wrapper methods
     public void ChooseBasicBird() => ChooseBird(BirdType.Type.Basic);
     public void ChooseBlackHoleBird() => ChooseBird(BirdType.Type.BlackHole);
     public void ChooseGunnerBird() => ChooseBird(BirdType.Type.Gunner);
@@ -191,4 +219,47 @@ public class BirdLauncher : MonoBehaviour
         selectedBird = type;
         SpawnBird();
     }
+
+    void LoadStageConfig()
+    {
+        StageBirdConfig config = FindObjectOfType<StageBirdConfig>();
+
+        availableTypes.Clear();
+
+        if (config != null && config.allowedBirdTypes != null && config.allowedBirdTypes.Count > 0)
+        {
+            foreach (var t in config.allowedBirdTypes)
+            {
+                availableTypes.Add(t);
+            }
+
+            birdPrefabs = birdPrefabs.FindAll(rb =>
+            {
+                BirdType bt = rb.GetComponent<BirdType>();
+                return bt != null && availableTypes.Contains(bt.type);
+            });
+
+            if (!availableTypes.Contains(selectedBird) && birdPrefabs.Count > 0)
+            {
+                BirdType bt = birdPrefabs[0].GetComponent<BirdType>();
+                if (bt != null) selectedBird = bt.type;
+            }
+        }
+        else
+        {
+            foreach (var rb in birdPrefabs)
+            {
+                BirdType bt = rb.GetComponent<BirdType>();
+                if (bt != null) availableTypes.Add(bt.type);
+            }
+        }
+    }
+
+    bool IsTypeAvailable(BirdType.Type type) => availableTypes.Contains(type);
+
+    void ShowUnavailable(BirdType.Type type)
+    {
+        Debug.Log($"{type} bird is not available in this stage.");
+    }
 }
+
