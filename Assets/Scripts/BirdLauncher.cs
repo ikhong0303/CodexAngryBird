@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BirdLauncher : MonoBehaviour
 {
@@ -18,6 +19,16 @@ public class BirdLauncher : MonoBehaviour
 
     [SerializeField]
     private CameraDirector cameraDirector;
+
+    [System.Serializable]
+    public class BirdSelectionEntry
+    {
+        public BirdType.Type type;
+        public GameObject button;
+    }
+
+    [SerializeField]
+    private List<BirdSelectionEntry> selectionEntries = new List<BirdSelectionEntry>();
 
     private readonly HashSet<BirdType.Type> availableTypes = new HashSet<BirdType.Type>();
 
@@ -252,6 +263,26 @@ public class BirdLauncher : MonoBehaviour
                 BirdType bt = rb.GetComponent<BirdType>();
                 if (bt != null) availableTypes.Add(bt.type);
             }
+        }
+
+        foreach (BirdType.Type t in System.Enum.GetValues(typeof(BirdType.Type)))
+        {
+            EnableBirdSelection(t, availableTypes.Contains(t));
+        }
+    }
+
+    public void EnableBirdSelection(BirdType.Type type, bool enabled)
+    {
+        BirdSelectionEntry entry = selectionEntries.Find(e => e.type == type);
+        if (entry != null && entry.button != null)
+        {
+            Button btn = entry.button.GetComponent<Button>();
+            if (btn != null) btn.interactable = enabled;
+            entry.button.SetActive(enabled);
+        }
+        else
+        {
+            Debug.Log($"Selection for {type} {(enabled ? "enabled" : "disabled")}");
         }
     }
 
