@@ -2618,7 +2618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5086981953684310557, guid: 855bd94bac1bb1948a9cc11614920944, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.4
+      value: -7.97
       objectReference: {fileID: 0}
     - target: {fileID: 5086981953684310557, guid: 855bd94bac1bb1948a9cc11614920944, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2626,7 +2626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5086981953684310557, guid: 855bd94bac1bb1948a9cc11614920944, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5086981953684310557, guid: 855bd94bac1bb1948a9cc11614920944, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2717,8 +2717,8 @@ Transform:
   m_GameObject: {fileID: 512070551}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.081059255, z: -0, w: 0.9967093}
-  m_LocalPosition: {x: 29.94, y: 14.04, z: 13.64}
-  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
+  m_LocalPosition: {x: 29.94, y: 19.37, z: 13.64}
+  m_LocalScale: {x: 2.228699, y: 2.228699, z: 2.228699}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 982683848}
@@ -11961,6 +11961,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 612964611}
     m_Modifications:
+    - target: {fileID: 1187819815372875189, guid: 855bd94bac1bb1948a9cc11614920944, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7069664
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187819815372875189, guid: 855bd94bac1bb1948a9cc11614920944, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7069663
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187819815372875189, guid: 855bd94bac1bb1948a9cc11614920944, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.014093385
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187819815372875189, guid: 855bd94bac1bb1948a9cc11614920944, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.014093346
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187819815372875189, guid: 855bd94bac1bb1948a9cc11614920944, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187819815372875189, guid: 855bd94bac1bb1948a9cc11614920944, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -362.284
+      objectReference: {fileID: 0}
     - target: {fileID: 1861727461172881188, guid: 855bd94bac1bb1948a9cc11614920944, type: 3}
       propertyPath: m_Name
       value: Pig
